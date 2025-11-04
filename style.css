@@ -1,85 +1,28 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+.in-progress-section {
+background: lightskyblue;
+padding: 20px;
+margin: 10px;
 }
 
-html {
-    font-family: "Baloo Bhaijaan 2", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 40px;
+.in-progress-task {
+background: cornflowerblue;
+margin: 10px;
+padding: 20px;
+border-color: black;
+border: 2px;
+}
+/* For later
+.completed-section {
+background: greenyellow;
+padding: 20px;
+margin: 10px;
+}
+*/
+.completed {
+background: green;
+text-decoration: line-through;
 }
 
-body {
-    min-height: 100vh;
-    background: linear-gradient(
-        -135deg, rgb(39, 28, 243), #ec2f12);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    color: #EEEEFF;
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 30px;
-    padding: 50px 40px;
-}
-
-.title {
-    font-size: 1.25rem;
-}
-
-hr {
-    width: 100%;
-    background-color: #EEEEFF;
-    height: 4px;
-    border-radius: 10px;
-    border: none;
-}
-
-.timer {
-    font-size: 2.5rem;
-    font-weight: 700;
-    line-height: 150%;
-}
-
-.button-wrapper {
-    justify-content: space-around;
-}
-
-button {
-    font-size: 0.7rem;
-    font-weight: 800;
-    letter-spacing: 1px;
-    padding: 5px 8px;
-    margin: 8px;
-    border-radius: 8px;
-    border: none;
-    color: rgb(221, 221, 221);
-    cursor: pointer;
-    transition: ease-in-out;
-    box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.3);
-}
-
-button:hover {
-    transform: scale(.95);
-}
-
-#start {
-    background-color: #20B655;
-}
-
-#stop {
-    background-color: #C72C29;
-}
-
-#reset {
-    background-color: #008CB6;
+input {
+margin: 10px;
 }
