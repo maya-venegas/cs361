@@ -128,3 +128,25 @@ margin: 10px;
   text-align: center;
   border-radius: 8px;
 }
+
+.service-controls button {
+    margin: 6px;
+    padding: 10px 15px;
+}
+
+.session-box {
+    background: #eef7ff;
+    border: 1px solid #7ab7ff;
+    padding: 15px;
+    width: 240px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+}
+
+.results-box {
+    margin-top: 10px;
+    background: #f6f6f6;
+    padding: 10px;
+    border-radius: 6px;
+}
+

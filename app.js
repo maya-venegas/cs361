@@ -62,3 +62,111 @@ function createTask(userInput) {
     var container = addTaskButton.parentNode;
     container.appendChild(taskDiv);
 }
+
+const output = document.getElementById("serviceOutput");
+
+function show(data) {
+    output.textContent = JSON.stringify(data, null, 4);
+}
+
+/* --------------------- GET QUOTE ---------------------- */
+document.getElementById("getQuoteBtn").addEventListener("click", async () => {
+    const res = await fetch("http://localhost:5000/api/quote");
+    show(await res.json());
+});
+
+/* --------------------- CREATE USER ---------------------- */
+document.getElementById("createUserBtn").addEventListener("click", async () => {
+    const userData = {
+        first_name: "Jane",
+        last_name: "Smith",
+        email: "jsmith@test.com",
+        username: "jsmith",
+        password: "GoodPassword321!"
+    };
+
+    const res = await fetch("http://localhost:5000/api/create-user", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(userData)
+    });
+
+    show(await res.json());
+});
+
+/* --------------------- OPT IN EMAIL ---------------------- */
+document.getElementById("optInBtn").addEventListener("click", async () => {
+    const res = await fetch("http://localhost:5000/api/opt-in", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: "jsmith@test.com" })
+    });
+
+    show(await res.json());
+});
+
+//------------------------------------------------------------
+// FRONTEND + BACKEND CONNECTED SESSION TIMER
+//------------------------------------------------------------
+
+let sessionInterval = null;
+let sessionStart = null;
+
+// FRONTEND LIVE TIMER
+function startLiveDisplay() {
+    sessionStart = Date.now();
+
+    if (sessionInterval) clearInterval(sessionInterval);
+
+    sessionInterval = setInterval(() => {
+        const dur = Date.now() - sessionStart;
+
+        const m = Math.floor(dur / 60000).toString().padStart(2, "0");
+        const s = Math.floor((dur % 60000) / 1000).toString().padStart(2, "0");
+
+        document.getElementById("session-timer").textContent = `${m}:${s}`;
+    }, 1000);
+}
+
+function stopLiveDisplay() {
+    if (sessionInterval) clearInterval(sessionInterval);
+    sessionInterval = null;
+}
+
+//------------------------------------------------------------
+// API CALLS TO BACKEND
+//------------------------------------------------------------
+
+document.getElementById("startSessionBtn").addEventListener("click", async () => {
+    const res = await fetch("http://localhost:5000/session/start", {
+        method: "POST"
+    });
+
+    const data = await res.json();
+
+    if (data.success) {
+        startLiveDisplay();  // <-- frontend counter begins
+    }
+});
+
+document.getElementById("stopSessionBtn").addEventListener("click", async () => {
+    const res = await fetch("http://localhost:5000/session/stop", {
+        method: "POST"
+    });
+
+    const data = await res.json();
+    stopLiveDisplay();
+
+    // Replace live timer with real microservice time
+    if (data.duration_ms !== undefined) {
+        const ms = data.duration_ms;
+
+        const m = Math.floor(ms / 60000).toString().padStart(2, "0");
+        const s = Math.floor((ms % 60000) / 1000).toString().padStart(2, "0");
+
+        document.getElementById("session-timer").textContent = `${m}:${s}`;
+    }
+
+    document.getElementById("timerResult").textContent = 
+        JSON.stringify(data, null, 4);
+});
