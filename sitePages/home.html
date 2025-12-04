@@ -27,9 +27,13 @@
 </div>
 <div class="task-container">
     <div class="in-progress-section">
-        <h3>Tasks:</h3>
-        <button id="in-progress" class="add-task-button">Add Task</button>
-        <textarea id="new-task-title" placeholder="Add a new task here!"></textarea>
+        <span class="add-task-section">
+            <button id="in-progress" class="add-task-button">Add Task</button>
+            <textarea id="new-task-title" placeholder="Add a new task here!"></textarea>
+        </span>
+        <div id="in-progress-tasks" class="task-list-section">
+            <!-- New tasks are added here dynamically -->
+        </div>
     </div>
 </div>
 <div id="blank-task-modal" class="modal">

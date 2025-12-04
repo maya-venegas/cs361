@@ -1,6 +1,7 @@
 html {
     font-family: Arial, sans-serif;
     background-color: #cdf0ff;
+    color: rgb(31, 49, 114);
     margin: 0;
     padding: 0;
 }
@@ -127,6 +128,53 @@ margin: 10px;
   width: 300px;
   text-align: center;
   border-radius: 8px;
+}
+
+.add-task-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #cdf0ff;
+  width: fit-content;
+  height: fit-content;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 8px;
+}
+
+#new-task-title {
+    height: 30px;
+    width: 300px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 2px solid #629eff98;
+    padding: 8px;
+}
+
+textarea::placeholder {
+    color: rgba(31, 49, 114, 0.789);
+}
+
+.task-list-section {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+}
+
+.add-task-button {
+    margin-right: 20px;
+    padding: 5px;
+    font-size: 16px;
+    color: rgb(31, 49, 114);
+    background-color: #629eff98;
+    border: 2px solid #629eff98;
+    border-radius: 5px;
+}
+
+.add-task-button:hover {
+    background-color: #a3d8f4d0;
+    cursor: pointer;
 }
 
 .service-controls {

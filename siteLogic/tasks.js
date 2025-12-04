@@ -54,7 +54,7 @@ function createTask(userInput) {
     taskDiv.appendChild(checkbox);
     taskDiv.appendChild(taskText);
 
-    // Add task div to the container
-    var container = addTaskButton.parentNode;
+    // Add task div to the tasks container
+    var container = document.getElementById("in-progress-tasks");
     container.appendChild(taskDiv);
 }
