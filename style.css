@@ -134,6 +134,13 @@ margin: 10px;
     padding: 10px 15px;
 }
 
+.results-box {
+    background: #f6f6f6;
+    padding: 10px;
+    border-radius: 6px;
+    margin-top: 10px;
+}
+
 .session-box {
     background: #eef7ff;
     border: 1px solid #7ab7ff;
@@ -142,11 +149,3 @@ margin: 10px;
     border-radius: 6px;
     margin-bottom: 15px;
 }
-
-.results-box {
-    margin-top: 10px;
-    background: #f6f6f6;
-    padding: 10px;
-    border-radius: 6px;
-}
-

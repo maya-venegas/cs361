@@ -1,5 +1,4 @@
-//Add task user input
-
+// Add task user input
 var allWords = [];
 
 var taskTitleInput = document.getElementById("new-task-title");
@@ -10,16 +9,16 @@ const modal = document.getElementById("blank-task-modal");
 const cancelModal = document.getElementById("cancel-modal");
 const continueModal = document.getElementById("continue-modal");
 
-/*taskTitleInput.addEventListener("change", addTask)*/
+/*taskTitleInput.addEventListener("change", addTask")*/
 
 addTaskButton.addEventListener("click", function () {
-const userInput = taskTitleInput.value.trim();
+    const userInput = taskTitleInput.value.trim();
 
-if(userInput === "") {
-    modal.style.display = "block";
-} else {
-    createTask(userInput);
-}
+    if(userInput === "") {
+        modal.style.display = "block";
+    } else {
+        createTask(userInput);
+    }
 });
 
 cancelModal.addEventListener("click", function () {
@@ -32,7 +31,6 @@ continueModal.addEventListener("click", function () {
     modal.style.display = "none";
 });
 
-
 function createTask(userInput) {
 
     // Save to the array
@@ -42,14 +40,14 @@ function createTask(userInput) {
     var taskDiv = document.createElement("div");
     taskDiv.classList.add("in-progress-task");
 
-    //Create a checkbox
+    // Create a checkbox
     var checkbox = document.createElement("input");
     checkbox.type = "checkbox";
 
-    //Checkbox event listener
+    // Checkbox event listener
     checkbox.addEventListener("click", function () {
         taskDiv.classList.toggle("completed");
-    })
+    });
 
     // Add the user input and checkbox as the task content
     var taskText = document.createElement("span");
@@ -63,19 +61,21 @@ function createTask(userInput) {
     container.appendChild(taskDiv);
 }
 
+
 const output = document.getElementById("serviceOutput");
 
+// Display JSON nicely
 function show(data) {
     output.textContent = JSON.stringify(data, null, 4);
 }
 
-/* --------------------- GET QUOTE ---------------------- */
+/* -------------------- QUOTE -------------------- */
 document.getElementById("getQuoteBtn").addEventListener("click", async () => {
     const res = await fetch("http://localhost:5000/api/quote");
     show(await res.json());
 });
 
-/* --------------------- CREATE USER ---------------------- */
+/* -------------------- CREATE USER -------------------- */
 document.getElementById("createUserBtn").addEventListener("click", async () => {
     const userData = {
         first_name: "Jane",
@@ -84,46 +84,36 @@ document.getElementById("createUserBtn").addEventListener("click", async () => {
         username: "jsmith",
         password: "GoodPassword321!"
     };
-
     const res = await fetch("http://localhost:5000/api/create-user", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(userData)
     });
-
     show(await res.json());
 });
 
-/* --------------------- OPT IN EMAIL ---------------------- */
+/* -------------------- OPT-IN EMAIL -------------------- */
 document.getElementById("optInBtn").addEventListener("click", async () => {
     const res = await fetch("http://localhost:5000/api/opt-in", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: "jsmith@test.com" })
     });
-
     show(await res.json());
 });
 
-//------------------------------------------------------------
-// FRONTEND + BACKEND CONNECTED SESSION TIMER
-//------------------------------------------------------------
-
+/* -------------------- SESSION TIMER -------------------- */
 let sessionInterval = null;
 let sessionStart = null;
 
-// FRONTEND LIVE TIMER
 function startLiveDisplay() {
     sessionStart = Date.now();
-
     if (sessionInterval) clearInterval(sessionInterval);
 
     sessionInterval = setInterval(() => {
         const dur = Date.now() - sessionStart;
-
         const m = Math.floor(dur / 60000).toString().padStart(2, "0");
         const s = Math.floor((dur % 60000) / 1000).toString().padStart(2, "0");
-
         document.getElementById("session-timer").textContent = `${m}:${s}`;
     }, 1000);
 }
@@ -133,40 +123,22 @@ function stopLiveDisplay() {
     sessionInterval = null;
 }
 
-//------------------------------------------------------------
-// API CALLS TO BACKEND
-//------------------------------------------------------------
-
 document.getElementById("startSessionBtn").addEventListener("click", async () => {
-    const res = await fetch("http://localhost:5000/session/start", {
-        method: "POST"
-    });
-
+    const res = await fetch("http://localhost:5000/session/start", { method: "POST" });
     const data = await res.json();
-
-    if (data.success) {
-        startLiveDisplay();  // <-- frontend counter begins
-    }
+    if (data.timer_id) startLiveDisplay();
+    document.getElementById("timerResult").textContent = JSON.stringify(data, null, 4);
 });
 
 document.getElementById("stopSessionBtn").addEventListener("click", async () => {
-    const res = await fetch("http://localhost:5000/session/stop", {
-        method: "POST"
-    });
-
+    const res = await fetch("http://localhost:5000/session/stop", { method: "POST" });
     const data = await res.json();
     stopLiveDisplay();
-
-    // Replace live timer with real microservice time
     if (data.duration_ms !== undefined) {
         const ms = data.duration_ms;
-
         const m = Math.floor(ms / 60000).toString().padStart(2, "0");
         const s = Math.floor((ms % 60000) / 1000).toString().padStart(2, "0");
-
         document.getElementById("session-timer").textContent = `${m}:${s}`;
     }
-
-    document.getElementById("timerResult").textContent = 
-        JSON.stringify(data, null, 4);
+    document.getElementById("timerResult").textContent = JSON.stringify(data, null, 4);
 });
