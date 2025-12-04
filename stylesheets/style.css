@@ -129,21 +129,39 @@ margin: 10px;
   border-radius: 8px;
 }
 
-.service-controls button {
-    margin: 6px;
-    padding: 10px 15px;
+.service-controls {
+    margin-top: 15px;
+    display: flex;
+    justify-content: left;
+    background-color: #bafff8;
+    padding: 15px;
+}
+
+.service-section button {
+    margin: 0 10px;
+    padding: 5px;
+    font-size: 15px;
+    color: rgb(31, 49, 114);
+    background-color: #629eff98;
+    border: 2px solid #629eff98;
+    border-radius: 5px;
+}
+
+.service-section button:hover {
+    background-color: #a3d8f4d0;
+    cursor: pointer;
 }
 
 .results-box {
-    background: #f6f6f6;
+    background: #a3d8f4d0;
     padding: 10px;
     border-radius: 6px;
     margin-top: 10px;
 }
 
 .session-box {
-    background: #eef7ff;
-    border: 1px solid #7ab7ff;
+    background: #a3d8f4d0;
+    border: 2px solid #629eff98;
     padding: 15px;
     width: 240px;
     border-radius: 6px;
