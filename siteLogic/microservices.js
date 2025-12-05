@@ -8,16 +8,19 @@ function show(data) {
 /* -------------------- QUOTE -------------------- */
 document.getElementById("getQuoteBtn").addEventListener("click", async () => {
     const res = await fetch("http://localhost:5000/api/quote");
-    show(await res.json());
+    const data = await res.json();
+    show(data);
+    console.log("== Sent a request for a quote from quote microservice at /api/quote");
+    console.log("Received Response: '", data.author, "' and '", data.quote, "' from quote microservice\n\n");
 });
 
 /* -------------------- CREATE USER -------------------- */
 document.getElementById("createUserBtn").addEventListener("click", async () => {
     const userData = {
         first_name: "Jane",
-        last_name: "Smith",
-        email: "jsmith@test.com",
-        username: "jsmith",
+        last_name: "Doe",
+        email: "jdoe@gmail.com",
+        username: "jdoe",
         password: "GoodPassword321!"
     };
     const res = await fetch("http://localhost:5000/api/create-user", {
@@ -25,7 +28,10 @@ document.getElementById("createUserBtn").addEventListener("click", async () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(userData)
     });
-    show(await res.json());
+    const data = await res.json();
+    show(data);
+    console.log("== Sent user data: '", userData, "'to user microservice at /api/create-user");
+    console.log("Received Response: '", data.message, "' from user microservice\n\n");
 });
 
 /* -------------------- OPT-IN EMAIL -------------------- */
@@ -33,9 +39,12 @@ document.getElementById("optInBtn").addEventListener("click", async () => {
     const res = await fetch("http://localhost:5000/api/opt-in", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: "jsmith@test.com" })
+        body: JSON.stringify({ email: "jdoe@gmail.com" })
     });
-    show(await res.json());
+    const data = await res.json();
+    show(data);
+    console.log("== Sent POST with user data: '", { email: "jdoe@gmail.com" }, "' to user microservice at /api/opt-in");
+    console.log("Received Response: '", data.message, "' from notification microservice\n\n");
 });
 
 /* -------------------- SESSION TIMER -------------------- */
@@ -64,6 +73,8 @@ document.getElementById("startSessionBtn").addEventListener("click", async () =>
     const data = await res.json();
     if (data.timer_id) startLiveDisplay();
     document.getElementById("timerResult").textContent = JSON.stringify(data, null, 4);
+    console.log("== Sent request to start timer to timer microservice at /session/start");
+    console.log("Received Response: '", data, "' from timer microservice\n\n");
 });
 
 document.getElementById("stopSessionBtn").addEventListener("click", async () => {
@@ -77,4 +88,6 @@ document.getElementById("stopSessionBtn").addEventListener("click", async () => 
         document.getElementById("session-timer").textContent = `${m}:${s}`;
     }
     document.getElementById("timerResult").textContent = JSON.stringify(data, null, 4);
+    console.log("== Sent request to stop timer to timer microservice at /session/stop");
+    console.log("Received Response: '", data, "' from timer microservice\n\n");
 });
