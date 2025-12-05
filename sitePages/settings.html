@@ -5,46 +5,46 @@
     <link rel="stylesheet" href="../stylesheets/style.css" />
 </head>
 <body>
-<header>
-    <h1>Settings Page</h1>
-</header>
+    <header>
+        <h1>Settings Page</h1>
+    </header>
 
-<nav id="nav-bar">
-    <span class="nav-item"><a href="home.html" target="_blank">Home</a></span>
-    <span class="nav-item"><a href="timer.html" target="_blank">Timer</a></span>
-    <span class="nav-item"><a href="settings.html">Settings</a></span>
-    <span class="nav-item"><a href="help.html" target="_blank">Help</a></span>
-</nav>
+    <nav id="nav-bar">
+        <span class="nav-item"><a href="home.html" target="_blank">Home</a></span>
+        <span class="nav-item"><a href="timer.html" target="_blank">Timer</a></span>
+        <span class="nav-item"><a href="settings.html">Settings</a></span>
+        <span class="nav-item"><a href="help.html" target="_blank">Help</a></span>
+    </nav>
 
-<div class="service-controls">
-    <div class="service-section">
-        <button id="getQuoteBtn">Get Motivational Quote</button>
+    <div class="service-controls">
+        <div class="service-section">
+            <button id="getQuoteBtn">Get Motivational Quote</button>
+        </div>
+        <div class="service-section">
+            <button id="createUserBtn">Create New User</button>
+        </div>
+        <div class="service-section">
+            <button id="optInBtn">Opt-In to Emails</button>
+        </div>
     </div>
-    <div class="service-section">
-        <button id="createUserBtn">Create New User</button>
-    </div>
-    <div class="service-section">
-        <button id="optInBtn">Opt-In to Emails</button>
-    </div>
-</div>
 
-<h2>Microservice Results:</h2>
-<pre id="serviceOutput" class="results-box"></pre>
+    <h2>Microservice Results:</h2>
+    <pre id="serviceOutput" class="results-box"></pre>
 
-<div class="settings-section">
-    <h2>Work Session Timer</h2>
-    <div id="session-timer-box" class="session-box">
-        <p><strong>Session Length:</strong> <span id="session-timer">00:00</span></p>
+    <div class="settings-section">
+        <h2>Work Session Timer</h2>
+        <div id="session-timer-box" class="session-box">
+            <p><strong>Session Length:</strong> <span id="session-timer">00:00</span></p>
+        </div>
+        <span class="service-section">
+            <button id="startSessionBtn">Start Session</button>
+        </span>
+        <span class="service-section">
+            <button id="stopSessionBtn">Stop Session</button>
+        </span>
+        <pre id="timerResult" class="results-box"></pre>
     </div>
-    <span class="service-section">
-        <button id="startSessionBtn">Start Session</button>
-    </span>
-    <span class="service-section">
-        <button id="stopSessionBtn">Stop Session</button>
-    </span>
-    <pre id="timerResult" class="results-box"></pre>
-</div>
 
-<script src="../siteLogic/microservices.js" defer></script>
+    <script src="../siteLogic/microservices.js" defer></script>
 </body>
 </html>
