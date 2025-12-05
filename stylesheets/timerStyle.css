@@ -14,7 +14,7 @@ html {
 body {
     min-height: 100vh;
     background: linear-gradient(
-        -135deg, rgb(39, 28, 243), #ec2f12);
+        -135deg, #bafff8, lightskyblue, rgb(39, 28, 243));
     display: flex;
     align-items: center;
     justify-content: center;
@@ -26,8 +26,8 @@ body {
     align-items: center;
     justify-content: center;
     gap: 10px;
-    color: #EEEEFF;
-    background-color: rgba(255, 255, 255, 0.2);
+    color: rgb(31, 49, 114);
+    background-color: rgba(255, 255, 255, 0.5);
     border-radius: 30px;
     padding: 50px 40px;
 }
@@ -38,7 +38,7 @@ body {
 
 hr {
     width: 100%;
-    background-color: #EEEEFF;
+    background-color: rgb(31, 49, 114);
     height: 4px;
     border-radius: 10px;
     border: none;
@@ -62,7 +62,7 @@ button {
     margin: 8px;
     border-radius: 8px;
     border: none;
-    color: rgb(221, 221, 221);
+    color: white;
     cursor: pointer;
     transition: ease-in-out;
     box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.3);
@@ -73,13 +73,13 @@ button:hover {
 }
 
 #start {
-    background-color: #20B655;
+    background-color: lightskyblue;
 }
 
 #stop {
-    background-color: #C72C29;
+    background-color: cornflowerblue;
 }
 
 #reset {
-    background-color: #008CB6;
+    background-color: rgb(31, 49, 114);
 }
